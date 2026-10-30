@@ -1,0 +1,39 @@
+%***************************************************************************************************
+% preamble/headings.tex - formatowanie tytułów rozdziałów i sekcji, głębokość numeracji i spisu treści.
+%***************************************************************************************************
+
+\setcounter{secnumdepth}{3}    % numerujemy do poziomu \subsubsection
+\setcounter{tocdepth}{2}       % w spisie treści do poziomu \subsection
+
+% Etykieta przed tytułem rozdziału (w załącznikach zmieniana przez \StartAppendices)
+\newcommand{\ChapterLabel}{\thechapter.}
+
+\titleformat{\chapter}[hang]
+  {\normalfont\huge\bfseries}{\ChapterLabel}{1ex}{}
+\titlespacing*{\chapter}{0pt}{0pt}{25pt}
+
+\titleformat{\section}[hang]
+  {\normalfont\Large\bfseries}{\thesection.}{1ex}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2ex plus .2ex}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\large\bfseries}{\thesubsection.}{1ex}{}
+\titlespacing*{\subsection}{0pt}{3ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subsubsection}[hang]
+  {\normalfont\normalsize\bfseries}{\thesubsubsection.}{1ex}{}
+\titlespacing*{\subsubsection}{0pt}{2.5ex plus 1ex minus .2ex}{1ex plus .2ex}
+
+% Brak wdów i sierot (pojedynczych wierszy akapitu na początku/końcu strony)
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Zalecana polska typografia: brak "samotnych" spójników na końcu wiersza ustawia się ręcznie
+% za pomocą twardej spacji (np. i~inne, w~tabeli).
+
+% Załączniki: \StartAppendices przełącza numerację na literową i etykietę "Załącznik A."
+\newcommand{\StartAppendices}{%
+  \clearpage
+  \appendix
+  \renewcommand{\ChapterLabel}{\appendixname~\thechapter.}%
+}

@@ -1,0 +1,65 @@
+%***************************************************************************************************
+% preamble/packages.tex - lista pakietów w ustalonej kolejności.
+% Kolejność ładowania jest istotna - nie zmieniaj jej bez potrzeby.
+% Pakiet hyperref jest ładowany osobno, na samym końcu (preamble/links.tex).
+%***************************************************************************************************
+
+% ---------------------------------------------------------------------------------------------
+% Język, kodowanie, czcionki, typografia (dokument wyłącznie w języku polskim)
+% ---------------------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}    % wymagane przez klucz inputencoding pakietu listings
+\usepackage{lmodern}
+\usepackage[polish]{babel}
+\let\lll\undefined             % babel (polish) definiuje \lll, co koliduje z amssymb
+\usepackage{csquotes}          % polskie cudzysłowy: \enquote{tekst}
+\usepackage{indentfirst}       % wcięcie pierwszego akapitu po nagłówku (zwyczaj polski)
+\usepackage{microtype}
+\frenchspacing                 % polska typografia: jednakowe odstępy po kropce
+
+% ---------------------------------------------------------------------------------------------
+% Matematyka
+% ---------------------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+% ---------------------------------------------------------------------------------------------
+% Kolory, grafika, obiekty pływające
+% ---------------------------------------------------------------------------------------------
+\usepackage[table, svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{float}             % umożliwia [H] (dokładne umiejscowienie obiektu)
+\usepackage{caption}
+\usepackage{subcaption}        % podrysunki: środowisko subfigure
+
+% ---------------------------------------------------------------------------------------------
+% Tabele
+% ---------------------------------------------------------------------------------------------
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{seqsplit}          % łamanie długich ciągów (np. skrótów SHA-256) w dowolnym miejscu
+
+% ---------------------------------------------------------------------------------------------
+% Listy, listingi, algorytmy, dołączanie PDF
+% ---------------------------------------------------------------------------------------------
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[ruled, vlined, linesnumbered, longend, algochapter]{algorithm2e}
+\usepackage{pdfpages}          % \includepdf - wstawianie stron z plików PDF (np. do załączników)
+\usepackage{multicol}
+\usepackage{pifont}            % znaczniki \ding (\cmark, \xmark w makrach)
+
+% ---------------------------------------------------------------------------------------------
+% Układ strony, nagłówki i stopki, tytuły rozdziałów
+% ---------------------------------------------------------------------------------------------
+% Marginesy 25 mm; bindingoffset zostawia dodatkowe 5 mm na zszycie (przy druku dwustronnym).
+\usepackage[a4paper, top=25mm, bottom=25mm, left=25mm, right=25mm,
+            bindingoffset=5mm, headheight=30pt, headsep=12pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}

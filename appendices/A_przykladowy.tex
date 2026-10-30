@@ -1,0 +1,12 @@
+\chapter{Przykładowy załącznik}\label{app:przykladowy}
+
+\TemplateNote{Załączniki dodawaj kolejnymi plikami (\file{B_nazwa.tex}, \file{C_nazwa.tex}) w \file{main.tex}. Numeracja
+zmienia się automatycznie na literową, a w nagłówku pojawia się napis \enquote{Załącznik A}.}
+
+Treść załącznika. Można w nim umieścić dodatkowe rysunki (rysunek~\ref{fig:zalacznik}), tabele i listingi
+-- ich numeracja ma wtedy postać \enquote{A.1}, \enquote{A.2} itd.
+
+\Figure[0.5]{placeholder.pdf}{Przykładowy rysunek w załączniku}{fig:zalacznik}
+
+% Dołączanie całych stron z pliku PDF (np. zeskanowany dokument, wydruk z narzędzia):
+%   \includepdf[pages=-, pagecommand={\thispagestyle{plain}}, scale=0.9]{images/dokument.pdf}

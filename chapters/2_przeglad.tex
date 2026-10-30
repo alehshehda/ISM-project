@@ -1,0 +1,60 @@
+\chapter{Przegląd literatury i podstawy teoretyczne}\label{ch:przeglad}
+
+\TemplateNote{Rozdział pokazuje cytowania, przypisy dolne, cytat blokowy oraz środowiska matematyczne
+(definicja, twierdzenie, dowód, przykład, uwaga). Źródła znajdują się w pliku \file{bib/references.bib}.}
+
+\section{Dotychczasowe prace}\label{sec:prace}
+
+Skład tekstu przy pomocy systemu \LaTeX{} opisano szczegółowo w pracy~\cite{lamport1994}, a jego silnik
+-- w klasycznym podręczniku~\cite{knuth1984}. Wiele wymagań dotyczących skrótów kryptograficznych
+zebrano w normie~\cite{fips180-4}. Kilka źródeł cytuje się jednocześnie poleceniem
+\latexcmd{cite\{a,b\}}, co daje zapis~\cite{lamport1994,knuth1984}.
+
+Przypisy dolne tworzy polecenie \latexcmd{footnote}\footnote{Treść przypisu pojawia się na dole strony.}.
+Dłuższe cytaty umieszcza się w środowisku \code{quote}:
+\begin{quote}
+    \enquote{Przykładowy cytat z literatury, ujęty w polskie cudzysłowy.}~\cite{knuth1984}
+\end{quote}
+
+\section{Podstawy teoretyczne}\label{sec:podstawy}
+
+\begin{definition}\label{def:nieparzyste}
+    Liczbę naturalną $k$ nazywamy \emph{nieparzystą}, jeżeli istnieje taka liczba $m \in \NN$, że $k = 2m + 1$.
+\end{definition}
+
+\begin{theorem}\label{thm:suma-nieparzystych}
+    Dla każdej liczby naturalnej $n \geq 1$ suma $n$ początkowych liczb nieparzystych jest równa $n^2$:
+    \begin{equation}\label{eq:suma-nieparzystych}
+        \sum_{i=1}^{n} (2i - 1) = n^2 .
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Dowód indukcyjny. Dla $n = 1$ obie strony równości~\eqref{eq:suma-nieparzystych} są równe $1$. Załóżmy,
+    że równość zachodzi dla pewnego $n$. Wtedy
+    \[
+        \sum_{i=1}^{n+1} (2i - 1) = n^2 + (2n + 1) = (n + 1)^2 ,
+    \]
+    co kończy dowód zgodnie z zasadą indukcji.
+\end{proof}
+
+\begin{example}
+    Dla $n = 4$ otrzymujemy $1 + 3 + 5 + 7 = 16 = 4^2$, co zgadza się z twierdzeniem~\ref{thm:suma-nieparzystych}.
+\end{example}
+
+\begin{remark}
+    Twierdzenia, definicje, przykłady i wnioski mają wspólny licznik numerowany w obrębie rozdziału.
+\end{remark}
+
+\section{Porównanie istniejących rozwiązań}\label{sec:porownanie}
+
+Przegląd rozwiązań warto zakończyć krótkim zestawieniem (szczegóły tabel -- w rozdziale~\ref{ch:metodyka}):
+\begin{enumerate}
+    \item rozwiązanie pierwsze -- główne zalety i ograniczenia,
+    \item rozwiązanie drugie:
+    \begin{enumerate}
+        \item podejście A,
+        \item podejście B,
+    \end{enumerate}
+    \item rozwiązanie trzecie.
+\end{enumerate}

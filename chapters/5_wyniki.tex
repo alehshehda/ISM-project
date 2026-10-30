@@ -1,0 +1,65 @@
+\chapter{Wyniki i dyskusja}\label{ch:wyniki}
+
+\TemplateNote{Rozdział pokazuje tabelę z długimi skrótami (makro \latexcmd{hash} w kolumnie \code{Y}), tabelę ze znacznikami
+\latexcmd{cmark} i \latexcmd{xmark} oraz środowisko \code{qa} do zapisu pytań i odpowiedzi.}
+
+\section{Zestawienie wyników}\label{sec:zestawienie}
+
+Tabela~\ref{tab:skroty} zawiera wartości skrótów dla trzech obiektów. Długie ciągi znaków zapisuje się makrem
+\latexcmd{hash\{...\}} w kolumnie rozciągliwej, dzięki czemu zawijają się w obrębie komórki, a nie wystają poza margines.
+
+\begin{table}[H]
+    \centering
+    \caption{Zestawienie sum kontrolnych badanych obiektów}\label{tab:skroty}
+    \tablefont
+    \begin{tabularx}{\linewidth}{l l Y}
+        \toprule
+        \hcell{Obiekt} & \hcell{Algorytm} & \hcell{Wartość skrótu} \\
+        \midrule
+        \multirow{2}{*}{\file{plik_a.bin}}
+            & MD5     & \hash{d41d8cd98f00b204e9800998ecf8427e} \\
+            & SHA-256 & \hash{e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855} \\
+        \midrule
+        \multirow{2}{*}{\file{plik_b.bin}}
+            & MD5     & \hash{d41d8cd98f00b204e9800998ecf8427e} \\
+            & SHA-256 & \hash{e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Tabela~\ref{tab:wymagania} pokazuje zestawienie spełnienia wymagań ze znacznikami wyboru.
+
+\begin{table}[H]
+    \centering
+    \caption{Spełnienie wymagań przez badane rozwiązania}\label{tab:wymagania}
+    \tablefont
+    \begin{tabular}{l c c c}
+        \toprule
+        \hcell{Wymaganie} & \hcell{Rozwiązanie A} & \hcell{Rozwiązanie B} & \hcell{Rozwiązanie C} \\
+        \midrule
+        Powtarzalność wyników   & \cmark & \cmark & \xmark \\
+        Dokumentacja            & \cmark & \xmark & \xmark \\
+        Dostępność narzędzi     & \cmark & \cmark & \cmark \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Odpowiedzi na pytania}\label{sec:pytania}
+
+Pytania i odpowiedzi zapisuje się środowiskiem \code{qa}. Numeracja pytań jest ciągła w całym dokumencie.
+
+\begin{qa}{Czy wyniki są powtarzalne?}
+    Tak. Powtórzenie badania w tych samych warunkach dało identyczne wartości skrótów (tabela~\ref{tab:skroty}),
+    co potwierdza powtarzalność procedury opisanej w rozdziale~\ref{ch:metodyka}.
+\end{qa}
+
+\begin{qa}{Które rozwiązanie spełnia wszystkie wymagania?}
+    Spośród zestawionych w tabeli~\ref{tab:wymagania} rozwiązań wszystkie wymagania spełnia rozwiązanie A.
+    Odpowiedź można rozwinąć w kilku akapitach, listach lub podsekcjach.
+\end{qa}
+
+\section{Dyskusja}\label{sec:dyskusja}
+
+W tej sekcji omów uzyskane wyniki, ich ograniczenia i możliwe źródła błędów. Odwołuj się do rysunków,
+tabel i listingów z poprzednich rozdziałów (np. rysunek~\ref{fig:pojedynczy} oraz listing~\ref{lst:kod}),
+aby czytelnik mógł łatwo prześledzić tok rozumowania.

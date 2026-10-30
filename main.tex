@@ -1,0 +1,82 @@
+%***************************************************************************************************
+% main.tex - szkielet dokumentu. Dane dokumentu edytuj w config/metadata.tex,
+% treść w katalogach chapters/ i appendices/, a wygląd w preamble/ i config/theme-pwr.tex.
+% Kompilacja: pdfLaTeX + BibTeX (na Overleaf: kompilator pdfLaTeX, plik główny main.tex).
+%***************************************************************************************************
+
+% Dla druku jednostronnego zamień "twoside" na "oneside".
+\documentclass[12pt, a4paper, twoside, openany]{book}
+
+% ============================== KONFIGURACJA I PREAMBUŁA ==============================
+\input{config/metadata}          % dane dokumentu i przełączniki
+\input{preamble/packages}        % pakiety (kolejność istotna)
+\input{config/theme-pwr}         % kolory, nazwy uczelni i wydziału, logo
+\input{preamble/polish}          % polskie napisy dokumentu
+\input{preamble/macros}          % makra, twierdzenia, listy
+\input{preamble/floats-and-tables}
+\input{preamble/listings}
+\input{preamble/headings}
+\input{preamble/pagestyles}
+\input{preamble/links}           % hyperref - zawsze na końcu
+
+\begin{document}
+
+% ============================== CZĘŚĆ WSTĘPNA ==============================
+\frontmatter
+\assignpagestyle{\chapter}{frontstyle}   % pierwsze strony rozdziałów wstępnych: czyste
+\pagestyle{frontstyle}
+
+\input{frontmatter/titlepage}
+\ifshowabstract
+    \input{frontmatter/abstract}
+\fi
+
+\clearpage\phantomsection
+\tableofcontents
+
+\ifshowabbreviations
+    \input{frontmatter/abbreviations}
+\fi
+
+% ============================== TREŚĆ GŁÓWNA ==============================
+\mainmatter
+\assignpagestyle{\chapter}{chapterfirst} % pierwsza strona rozdziału: tylko stopka
+\pagestyle{mainstyle}
+
+\input{chapters/1_wstep}
+\input{chapters/2_przeglad}
+\input{chapters/3_metodyka}
+\input{chapters/4_realizacja}
+\input{chapters/5_wyniki}
+\input{chapters/6_podsumowanie}
+
+% ============================== CZĘŚĆ KOŃCOWA ==============================
+\ifshowbibliography
+    \clearpage\phantomsection
+    \pagestyle{bibstyle}
+    \addcontentsline{toc}{chapter}{\bibname}
+    \bibliographystyle{bib/plabbrv-fixed}
+    \bibliography{bib/references}
+\fi
+
+\ifshowlistoffigures
+    \BackList{lofstyle}{\listfigurename}{\listoffigures}
+\fi
+\ifshowlistoftables
+    \BackList{lotstyle}{\listtablename}{\listoftables}
+\fi
+\ifshowlistoflistings
+    \BackList{lolstyle}{\lstlistlistingname}{\lstlistoflistings}
+\fi
+\ifshowlistofalgorithms
+    \BackList{loastyle}{\listalgorithmcfname}{\listofalgorithms}
+\fi
+
+% ============================== ZAŁĄCZNIKI ==============================
+\ifshowappendices
+    \StartAppendices
+    \pagestyle{mainstyle}
+    \input{appendices/A_przykladowy}
+\fi
+
+\end{document}

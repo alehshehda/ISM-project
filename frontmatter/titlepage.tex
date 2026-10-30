@@ -1,0 +1,59 @@
+% =============================================================================
+% STRONA TYTUŁOWA - tylko układ graficzny.
+% Wszystkie dane (tytuł, autorzy, data, skrót) pobierane są z config/metadata.tex,
+% a nazwy jednostek, kolory i logo z config/theme-pwr.tex.
+% =============================================================================
+\begin{titlepage}
+    \centering
+
+    % --- Nagłówek uczelni i wydziału ---
+    \includegraphics[width=10cm]{\LogoFile} \\[0.4cm]
+    {\fontsize{16pt}{18pt}\selectfont \textsc{\Faculty}}\\[0.2cm]
+
+    % Subtelna linia oddzielająca pod wydziałem
+    \noindent\makebox[\linewidth]{\rule{0.4\linewidth}{0.5pt}}\\[0.3cm]
+
+    {\fontsize{14pt}{16pt}\selectfont \textsc{\Course}}\\
+
+    % Linia ze skrótem (ukrywana, gdy \DocumentHash jest puste)
+    \ifx\DocumentHash\empty\else
+        {\fontsize{8pt}{10pt}\selectfont \color{gray}
+         \texttt{[ \textnormal{sha256:} \DocumentHash\ ]}}\\
+    \fi
+    \vspace{0.6cm}
+
+    % --- Przedmiot ---
+    {\fontsize{16pt}{18pt}\selectfont \textbf{\Subject}}\\[0.2cm]
+    {\fontsize{10pt}{12pt}\selectfont \texttt{\GroupInfo}}\\[1.5cm]
+
+    % --- Typ dokumentu ---
+    {\fontsize{12pt}{14pt}\selectfont \textsc{\DocType}}\\[0.6cm]
+
+    % --- Tytuł dokumentu ---
+    \noindent\makebox[\linewidth]{\color{Accent}\rule{\linewidth}{1.5pt}}\\[0.5cm]
+    {\fontsize{20pt}{24pt}\selectfont \bfseries \DocTitle}\\[0.4cm]
+    \noindent\makebox[\linewidth]{\color{Accent}\rule{\linewidth}{1.5pt}}\\
+
+    \vfill
+
+    % --- Blok informacyjny: autorzy i prowadzący ---
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{flushleft}
+            {\fontsize{9pt}{11pt}\selectfont \color{gray} \textsc{\AuthorsLabel:}}\\[0.2cm]
+            {\fontsize{11pt}{14pt}\selectfont \textbf{\Authors}}
+        \end{flushleft}
+    \end{minipage}%
+    \begin{minipage}[t]{0.5\textwidth}
+        \begin{flushright}
+            {\fontsize{9pt}{11pt}\selectfont \color{gray} \textsc{\SupervisorLabel:}}\\[0.2cm]
+            {\fontsize{11pt}{14pt}\selectfont \textbf{\Supervisor}}
+        \end{flushright}
+    \end{minipage}
+
+    \vfill
+    \vspace{0.8cm}
+
+    % --- Stopka: miejscowość i data (wpisane ręcznie w metadata.tex) ---
+    {\fontsize{10pt}{12pt}\selectfont \PlaceDate}
+
+\end{titlepage}

@@ -1,0 +1,33 @@
+%***************************************************************************************************
+% preamble/polish.tex - WSZYSTKIE polskie napisy dokumentu w jednym miejscu.
+% Ładowany po pakietach (listings, algorithm2e), których nazwy nadpisuje.
+%***************************************************************************************************
+
+% Nazwy używane w nagłówkach spisów i podpisach
+\newcommand{\abbrevname}{Spis skrótów}
+
+\addto\captionspolish{%
+  \renewcommand{\contentsname}{Spis treści}%
+  \renewcommand{\listfigurename}{Spis rysunków}%
+  \renewcommand{\listtablename}{Spis tabel}%
+  \renewcommand{\lstlistlistingname}{Spis listingów}%
+  \renewcommand{\chaptername}{Rozdział}%
+  \renewcommand{\appendixname}{Załącznik}%
+  \renewcommand{\bibname}{Bibliografia}%
+  \renewcommand{\refname}{Bibliografia}%
+  \renewcommand{\figurename}{Rysunek}%
+  \renewcommand{\tablename}{Tabela}%
+  \renewcommand{\lstlistingname}{Listing}%
+  \renewcommand{\proofname}{Dowód}%
+}
+
+% Algorytmy (algorithm2e): nazwa środowiska, nazwa w odwołaniach i tytuł spisu
+\SetAlgorithmName{Algorytm}{algorytm}{Spis algorytmów}
+
+% Słowa kluczowe w pseudokodzie (algorithm2e)
+\SetKwInOut{Input}{Dane wejściowe}
+\SetKwInOut{Output}{Wynik}
+\SetKwIF{If}{ElseIf}{Else}{jeżeli}{to}{w przeciwnym razie, jeżeli}{w przeciwnym razie}{koniec warunku}
+\SetKwFor{For}{dla}{wykonaj}{koniec pętli}
+\SetKwFor{While}{dopóki}{wykonuj}{koniec pętli}
+\SetKw{Return}{zwróć}

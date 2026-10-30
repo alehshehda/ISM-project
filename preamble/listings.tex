@@ -1,0 +1,56 @@
+%***************************************************************************************************
+% preamble/listings.tex - jeden wspólny styl listingów (kod i wyjście terminala).
+% Użycie: \begin{lstlisting}[caption={Opis}, label={lst:etykieta}] ... \end{lstlisting}
+%         \begin{lstlisting}[style=code, language=Python, ...] ... \end{lstlisting}
+%         \lstinputlisting[style=code, language=C, caption={...}, label={...}]{plik.c}
+%***************************************************************************************************
+
+% Polskie znaki w listingach (pdfLaTeX + UTF-8); mapowanie zdefiniowane tylko tutaj
+\lstset{
+  inputencoding=utf8,
+  extendedchars=true,
+  literate=
+    {ą}{{\k{a}}}1 {ć}{{\'c}}1 {ę}{{\k{e}}}1 {ł}{{\l{}}}1 {ń}{{\'n}}1
+    {ó}{{\'o}}1 {ś}{{\'s}}1 {ź}{{\'z}}1 {ż}{{\.z}}1
+    {Ą}{{\k{A}}}1 {Ć}{{\'C}}1 {Ę}{{\k{E}}}1 {Ł}{{\L{}}}1 {Ń}{{\'N}}1
+    {Ó}{{\'O}}1 {Ś}{{\'S}}1 {Ź}{{\'Z}}1 {Ż}{{\.Z}}1
+}
+
+% Styl bazowy
+\lstdefinestyle{base}{
+  basicstyle=\ttfamily\footnotesize,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{lgray},
+  breaklines=true,
+  postbreak=\mbox{\textcolor{dgray}{$\hookrightarrow$}\space},
+  showstringspaces=false,
+  captionpos=t,
+  aboveskip=1em,
+  belowskip=1em,
+}
+
+% Wyjście terminala / sesja konsoli (styl domyślny)
+\lstdefinestyle{terminal}{
+  style=base,
+  backgroundcolor=\color{gray!6},
+}
+
+% Kod źródłowy (z numerami wierszy i kolorami)
+\lstdefinestyle{code}{
+  style=base,
+  numbers=left,
+  numberstyle=\tiny\color{dgray},
+  numbersep=6pt,
+  xleftmargin=1.6em,
+  framexleftmargin=1.6em,
+  keywordstyle=\bfseries\color{Accent},
+  commentstyle=\itshape\color{dgray},
+  stringstyle=\color{DarkGreen},
+}
+
+\lstset{style=terminal}
+
+% Numeracja listingów w obrębie rozdziału (jak rysunki i tabele)
+\AtBeginDocument{\counterwithin{lstlisting}{chapter}}

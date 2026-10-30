@@ -1,0 +1,24 @@
+%***************************************************************************************************
+% preamble/links.tex - hiperłącza i metadane PDF. Ładowany jako OSTATNI element preambuły.
+%***************************************************************************************************
+
+\usepackage[unicode=true, pdfencoding=auto, pdflang={pl-PL}]{hyperref}
+\urlstyle{same}
+
+\hypersetup{
+  pdftitle   = {\DocTitle},
+  pdfauthor  = {\PdfAuthor},
+  pdfsubject = {\Subject},
+}
+
+% Wersja ekranowa: kolorowe odnośniki; wersja do druku (config/metadata.tex): bez ramek i kolorów
+\ifprintversion
+  \hypersetup{hidelinks}
+\else
+  \hypersetup{
+    colorlinks = true,
+    linkcolor  = blue,
+    citecolor  = blue,
+    urlcolor   = blue
+  }
+\fi

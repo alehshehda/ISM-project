@@ -1,0 +1,58 @@
+%***************************************************************************************************
+% preamble/floats-and-tables.tex - podpisy, rysunki, tabele.
+% Zasada: podpis tabeli i listingu NAD obiektem, podpis rysunku POD obiektem.
+%***************************************************************************************************
+
+% Obrazy wyszukiwane w katalogach images/ i logos/ (dla bezpośredniego \includegraphics)
+\graphicspath{{images/}{logos/}}
+
+% Podpisy: mała czcionka, pogrubiona etykieta, kropka ("Rysunek 2.1. Opis")
+\captionsetup{font=small, labelfont=bf, labelsep=period, skip=8pt}
+\captionsetup[figure]{position=bottom}
+\captionsetup[table]{position=top}
+\captionsetup[subfigure]{font=footnotesize, labelfont=bf, labelsep=period}
+
+% Domyślne umiejscowienie rysunków (ustawiane w config/metadata.tex)
+\floatplacement{figure}{\DefaultFigurePlacement}
+
+% Strony nie są rozciągane do dolnego marginesu - unika "rozjeżdżania" odstępów przy obiektach [H]
+\raggedbottom
+
+% Obiekty pływające na górze strony bez dodatkowego odstępu
+\makeatletter
+\setlength\@fptop{0\p@}
+\makeatother
+
+% ---------------------------------------------------------------------------------------------
+% Rysunek: \Figure[szerokość]{plik}{podpis}{etykieta}
+%   - plik podawany względem katalogu images/ (z rozszerzeniem), np. \Figure{zrzut.png}{Podpis}{fig:zrzut}
+%   - szerokość jako ułamek szerokości tekstu (domyślnie 0.9)
+%   - gdy pliku brakuje, w dokumencie pojawia się ramka z nazwą pliku (kompilacja nie jest przerywana)
+% ---------------------------------------------------------------------------------------------
+\newcommand{\Figure}[4][0.9]{%
+  \begin{figure}
+    \centering
+    \IfFileExists{images/#2}{%
+      \includegraphics[width=#1\linewidth, height=0.75\textheight, keepaspectratio]{images/#2}%
+    }{%
+      \PackageWarning{report-template}{Brak pliku obrazu images/#2}%
+      \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering\textit{Brak pliku obrazu}\\[1ex]\texttt{\detokenize{images/#2}}}}%
+    }%
+    \caption{#3}\label{#4}%
+  \end{figure}%
+}
+
+% ---------------------------------------------------------------------------------------------
+% Tabele
+% ---------------------------------------------------------------------------------------------
+\newcommand{\tablefont}{\footnotesize}          % jeden rozmiar czcionki dla wszystkich tabel
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+
+% Kolumny o stałej szerokości: L{3cm} (do lewej), C{3cm} (wyśrodkowana), R{3cm} (do prawej)
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+% Kolumny rozciągliwe dla tabularx: Y (do lewej), Z (wyśrodkowana)
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Z}{>{\centering\arraybackslash}X}
