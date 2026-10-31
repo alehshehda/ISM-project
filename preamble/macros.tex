@@ -3,36 +3,22 @@
 %***************************************************************************************************
 
 % ---------------------------------------------------------------------------------------------
-% Makra semantyczne (spójny wygląd kodu, plików, poleceń i skrótów)
-% \detokenize pozwala wpisywać znaki specjalne (np. _ oraz %) bez zabezpieczania.
+% Makra semantyczne
 % ---------------------------------------------------------------------------------------------
-\newcommand{\code}[1]{\texttt{\detokenize{#1}}}   % fragment kodu / wyrażenie
-\newcommand{\file}[1]{\texttt{\detokenize{#1}}}   % nazwa pliku lub ścieżka
-\newcommand{\cmd}[1]{\texttt{\detokenize{#1}}}    % polecenie konsoli
-% Polecenie LaTeX-a w tekście: \latexcmd{section} wypisuje \section; nawiasy klamrowe zapisuj jako \{ \}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\file}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\cmd}[1]{\texttt{\detokenize{#1}}}
 \newcommand{\latexcmd}[1]{\texttt{\textbackslash #1}}
-% Skrót kryptograficzny lub inny długi ciąg znaków - zawija się w dowolnym miejscu
 \newcommand{\hash}[1]{{\ttfamily\footnotesize\seqsplit{#1}}}
 
-% Pogrubiony nagłówek wewnątrz sekcji (zamiast ręcznego \medskip\noindent\textbf{..}\\)
 \newcommand{\lead}[1]{\par\medskip\noindent\textbf{#1}\par\nopagebreak\smallskip}
 
-% Ramka z podpowiedzią w przykładowych rozdziałach - usuń wywołania \TemplateNote przy pisaniu własnej treści
-\newcommand{\TemplateNote}[1]{%
-  \par\medskip\noindent
-  \fcolorbox{lgray}{gray!8}{%
-    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\small\textbf{Wskazówka szablonu.} #1}}%
-  \par\medskip
-}
-
-% Rozdział bez numeru (dopisany do spisu treści): \UnnumberedChapter{Streszczenie}
 \newcommand{\UnnumberedChapter}[1]{%
   \clearpage\phantomsection
   \addcontentsline{toc}{chapter}{#1}%
   \chapter*{#1}%
 }
 
-% Pytanie i odpowiedź: \begin{qa}{Treść pytania} Odpowiedź... \end{qa}
 \newcounter{qacount}
 \newenvironment{qa}[1]{%
   \refstepcounter{qacount}%
@@ -41,15 +27,12 @@
   \noindent\textbf{Odpowiedź}\par\nopagebreak
 }{\par\medskip}
 
-% Spis skrótów: \begin{abbreviations} \item[HTTP] Hypertext Transfer Protocol ... \end{abbreviations}
 \newenvironment{abbreviations}
   {\begin{description}[style=multiline, leftmargin=3.5cm, font=\bfseries, itemsep=2pt]}
   {\end{description}}
 
-% Tylda wyśrodkowana w pionie (przybliżenie)
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
 
-% Znaczniki w tabelach (\cmark, \xmark) i pogrubiona komórka nagłówka
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
 \newcommand{\hcell}[1]{\textbf{#1}}
@@ -65,7 +48,7 @@
 \newcommand{\IFF}{\leftrightarrow}
 
 % ---------------------------------------------------------------------------------------------
-% Twierdzenia, definicje, przykłady, uwagi (numeracja w obrębie rozdziału, wspólny licznik)
+% Twierdzenia, definicje, przykłady, uwagi
 % ---------------------------------------------------------------------------------------------
 \theoremstyle{plain}
 \newtheorem{theorem}{Twierdzenie}[chapter]
@@ -79,14 +62,13 @@
 \renewcommand{\qedsymbol}{$\blacklozenge$}
 
 % ---------------------------------------------------------------------------------------------
-% Listy (zwykłe itemize / enumerate - jeden spójny styl w całym dokumencie)
+% Listy
 % ---------------------------------------------------------------------------------------------
 \setlist{topsep=0.4em, itemsep=0.2em, parsep=0pt, partopsep=0pt}
 \setlist[itemize,1]{label=\textbullet, leftmargin=*}
-\setlist[itemize,2]{label=\textendash, leftmargin=*}
+\setlist[itemize,2]{label=-, leftmargin=*}
 \setlist[itemize,3]{label=$\diamond$, leftmargin=*}
 \setlist[enumerate,1]{label=\arabic*., leftmargin=*}
 \setlist[enumerate,2]{label=\alph*), leftmargin=*}
 
-% Mniej "rozjeżdżonych" akapitów w wąskich kolumnach i listach
 \setlength{\emergencystretch}{2em}

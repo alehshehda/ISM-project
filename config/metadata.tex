@@ -16,14 +16,14 @@
 
 \newcommand{\AuthorsLabel}{Autorzy}                 % etykieta nad listą autorów (np. Autor)
 \newcommand{\Authors}{%                             % linie rozdzielaj przez \\ (bez \\ na końcu)
-    Aleh Shehda, nr. albumu 272277\\
-    Aliaksei Lapachuk, nr. albumu 276711\\
-    Maksym Buhai, nr. albumu 276592\\
+    Aleh Shehda, nr albumu 272277\\
+    Aliaksei Lapachuk, nr albumu 276711\\
+    Maksym Buhai, nr albumu 276592
     }
 
 \newcommand{\SupervisorLabel}{Prowadzący}           % etykieta nad danymi prowadzącego
 \newcommand{\Supervisor}{%
-    dr. inż. Tomasz Krzysztof Janiczek
+    dr inż. Tomasz Krzysztof Janiczek
     }
 
 % Miejscowość i data - wpisywane ręcznie (świadomie bez \today).
@@ -34,19 +34,19 @@
 \newcommand{\DocumentHash}{4d765532542ad27ee8332d18c750238d7d4ec295ca117fb7aeca216a0339bdf0}
 
 % Autor w metadanych pliku PDF (bez znaków \\ i adresów e-mail)
-\newcommand{\PdfAuthor}{Aleh Shehda, Aliaksei Lapachul, Maksym Buhai}
+\newcommand{\PdfAuthor}{Aleh Shehda, Aliaksei Lapachuk, Maksym Buhai}
 
 % ---------------------------------------------------------------------------------------------
 % Przełączniki opcjonalnych części dokumentu: \...true = pokaż, \...false = ukryj
 % ---------------------------------------------------------------------------------------------
 \newif\ifshowabstract         \showabstractfalse          % Streszczenie przed spisem treści
-\newif\ifshowabbreviations    \showabbreviationsfalse     % Spis skrótów po spisie treści
+\newif\ifshowabbreviations    \showabbreviationstrue      % Spis skrótów po spisie treści
 \newif\ifshowbibliography     \showbibliographytrue       % Bibliografia (BibTeX, bib/references.bib)
 \newif\ifshowlistoffigures    \showlistoffigurestrue      % Spis rysunków
 \newif\ifshowlistoftables     \showlistoftablestrue       % Spis tabel
-\newif\ifshowlistoflistings   \showlistoflistingstrue     % Spis listingów
-\newif\ifshowlistofalgorithms \showlistofalgorithmstrue   % Spis algorytmów
-\newif\ifshowappendices       \showappendicesfalse         % Załączniki
+\newif\ifshowlistoflistings   \showlistoflistingsfalse    % Spis listingów
+\newif\ifshowlistofalgorithms \showlistofalgorithmsfalse  % Spis algorytmów
+\newif\ifshowappendices       \showappendicestrue         % Załączniki
 
 % Wersja do druku: wyłącza kolorowe odnośniki w PDF (\printversiontrue)
 \newif\ifprintversion         \printversionfalse
