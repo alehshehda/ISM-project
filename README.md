@@ -1,6 +1,11 @@
 # Zarządzanie i reagowanie na incydenty bezpieczeństwa w środowisku Neobank
 
+[![Build and Release PDF](https://github.com/alehshehda/ISM-project/actions/workflows/compile.yml/badge.svg)](https://github.com/alehshehda/ISM-project/actions/workflows/compile.yml)
+
 Dokumentacja projektowa z przedmiotu **Zarządzanie bezpieczeństwem informacji** (Politechnika Wrocławska, Wydział Informatyki i Telekomunikacji, kierunek Cyberbezpieczeństwo).
+
+- **Aktualna wersja PDF (GitHub Pages):** https://alehshehda.github.io/ISM-project/
+- **Najnowsze wydanie PDF (GitHub Releases):** https://github.com/alehshehda/ISM-project/releases/tag/latest
 
 ## Autorzy
 
@@ -14,13 +19,15 @@ Dokumentacja projektowa z przedmiotu **Zarządzanie bezpieczeństwem informacji*
 
 ```text
 main.tex                              główny plik dokumentu LaTeX
+.github/
+  workflows/
+    compile.yml                       automatyczna kompilacja i publikacja PDF (GitHub Actions)
 config/
   metadata.tex                        metadane dokumentu i przełączniki części opcjonalnych
   theme-pwr.tex                       motyw graficzny Politechniki Wrocławskiej
 preamble/                             konfiguracja pakietów, stylów stron, makr i tabel
 frontmatter/
   titlepage.tex                       strona tytułowa
-  abstract.tex                        streszczenie i słowa kluczowe
   abbreviations.tex                   spis skrótów i akronimów
 chapters/
   1_wstep.tex                         Wstęp i charakterystyka badanej organizacji
@@ -38,9 +45,16 @@ images/                               rysunki i schematy
 logos/                                logotypy uczelni
 ```
 
-## Kompilacja
+## Kompilacja i publikacja (CI/CD)
 
-Dokument kompilowany przy użyciu **pdfLaTeX** oraz **BibTeX**:
+### Automatyczna (GitHub Actions)
+Każdy `push` na gałąź `main` automatycznie uruchamia workflow `.github/workflows/compile.yml`, który:
+1. Kompiluje dokument `main.tex` do pliku `ISM-project.pdf`.
+2. Aktualizuje wydanie `latest` w zakładce **Releases**.
+3. Publikuje najnowszą wersję dokumentu PDF na **GitHub Pages**.
+
+### Lokalna
+Dokument można również skompilować lokalnie przy użyciu **pdfLaTeX** oraz **BibTeX**:
 
 ```bash
 pdflatex main.tex

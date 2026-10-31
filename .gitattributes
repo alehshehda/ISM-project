@@ -8,6 +8,8 @@
 *.sty text eol=lf
 *.cls text eol=lf
 *.md  text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
 

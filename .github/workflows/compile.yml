@@ -1,0 +1,81 @@
+name: Build and Release PDF
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+
+      - name: Rename compiled PDF
+        run: mv main.pdf ISM-project.pdf
+
+      - name: Move latest tag to current commit
+        run: |
+          git tag -f latest
+          git push -f origin latest
+
+      - name: Update latest release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Compiled PDF
+          draft: false
+          prerelease: false
+          files: ISM-project.pdf
+
+      - name: Prepare GitHub Pages site
+        run: |
+          mkdir -p _site
+          cp ISM-project.pdf _site/
+          cat << 'EOF' > _site/index.html
+          <!DOCTYPE html>
+          <html lang="pl">
+          <head>
+            <meta charset="utf-8">
+            <meta http-equiv="refresh" content="0; url=ISM-project.pdf">
+            <title>ISM Project - PDF</title>
+          </head>
+          <body>
+            <p>Redirecting to <a href="ISM-project.pdf">ISM-project.pdf</a>...</p>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy_pages:
+    needs: build_latex
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
