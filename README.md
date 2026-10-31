@@ -1,62 +1,48 @@
-# Zarządzanie i reagowanie na incydenty bezpieczeństwa w środowisku Neobank
+# Security Incident Management and Response in a Neobank Environment
 
-[![Zobacz PDF](https://img.shields.io/badge/Zobacz_PDF-GitHub_Pages-8C0014?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://alehshehda.github.io/ISM-project/)
-[![Pobierz PDF](https://img.shields.io/badge/Pobierz_PDF-Latest_Release-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alehshehda/ISM-project/releases/download/latest/ISM-project.pdf)
+[![View PDF](https://img.shields.io/badge/View-PDF-blue?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://alehshehda.github.io/ISM-project/ISM-project.pdf)
+[![Download PDF](https://img.shields.io/badge/Download-PDF-success?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alehshehda/ISM-project/releases/download/latest/ISM-project.pdf)
 
-Dokumentacja projektowa z przedmiotu **Zarządzanie bezpieczeństwem informacji** (Politechnika Wrocławska, Wydział Informatyki i Telekomunikacji, kierunek Cyberbezpieczeństwo).
+Project documentation for the **Information Security Management** course (*Zarządzanie bezpieczeństwem informacji*) at Wrocław University of Science and Technology, Faculty of Information and Communication Technology (Cybersecurity).
 
-## Autorzy
+## Authors
 
 - Aleh Shehda (272277)
 - Aliaksei Lapachuk (276711)
 - Maksym Buhai (276592)
 
-**Prowadzący:** dr inż. Tomasz Krzysztof Janiczek
+**Supervisor:** dr inż. Tomasz Krzysztof Janiczek
 
-## Struktura repozytorium
+## Repository Structure
 
 ```text
-main.tex                              główny plik dokumentu LaTeX
+main.tex                              main LaTeX document file
 .github/
   workflows/
-    compile.yml                       automatyczna kompilacja i publikacja PDF (GitHub Actions)
+    compile.yml                       automated PDF build and release workflow
 config/
-  metadata.tex                        metadane dokumentu i przełączniki części opcjonalnych
-  theme-pwr.tex                       motyw graficzny Politechniki Wrocławskiej
-preamble/                             konfiguracja pakietów, stylów stron, makr i tabel
+  metadata.tex                        document metadata and optional section toggles
+  theme-pwr.tex                       WUST visual theme and colors
+preamble/                             packages, page styles, macros, and table settings
 frontmatter/
-  titlepage.tex                       strona tytułowa
-  abbreviations.tex                   spis skrótów i akronimów
+  titlepage.tex                       title page layout
+  abbreviations.tex                   list of abbreviations and acronyms
 chapters/
-  1_wstep.tex                         Wstęp i charakterystyka badanej organizacji
-  2_wymogi_regulacyjne.tex            Wymogi regulacyjne i podstawy normatywne
-  3_organizacja_procesu.tex           Organizacja procesu zarządzania incydentami i plan reagowania
-  4_playbooki_operacyjne.tex          Playbooki operacyjne, rejestr incydentów i materiał dowodowy
-  5_studium_przypadku.tex             Studium przypadku, działania poincydentowe i wskaźniki skuteczności
-  6_podsumowanie.tex                  Podsumowanie i wnioski
+  1_wstep.tex                         Introduction and organization profile
+  2_wymogi_regulacyjne.tex            Regulatory requirements and normative foundations
+  3_organizacja_procesu.tex           Incident management process and response plan (IRP)
+  4_playbooki_operacyjne.tex          Operational playbooks, incident register, and evidence handling
+  5_studium_przypadku.tex             Case study, post-incident activities, and KPIs
+  6_podsumowanie.tex                  Summary and conclusions
 appendices/
-  A_szablony_formularzy.tex           Szablony formularzy i kart incydentów
+  A_szablony_formularzy.tex           Incident forms and report templates
 bib/
-  references.bib                      bibliografia (BibTeX)
-  plabbrv-fixed.bst                   styl bibliografii
-images/                               rysunki i schematy
-logos/                                logotypy uczelni
+  references.bib                      BibTeX bibliography database
+  plabbrv-fixed.bst                   Polish bibliography style
+images/                               figures and diagrams
+logos/                                university logos
 ```
 
-## Kompilacja i publikacja (CI/CD)
+## Build
 
-### Automatyczna (GitHub Actions)
-Każdy `push` na gałąź `main` automatycznie uruchamia workflow `.github/workflows/compile.yml`, który:
-1. Kompiluje dokument `main.tex` do pliku `ISM-project.pdf`.
-2. Aktualizuje wydanie `latest` w zakładce **Releases**.
-3. Publikuje najnowszą wersję dokumentu PDF na **GitHub Pages**.
-
-### Lokalna
-Dokument można również skompilować lokalnie przy użyciu **pdfLaTeX** oraz **BibTeX**:
-
-```bash
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-```
+The document is automatically compiled to `ISM-project.pdf` and published to GitHub Releases and GitHub Pages via the GitHub Actions CI/CD workflow (`.github/workflows/compile.yml`) on every push to `main`.
