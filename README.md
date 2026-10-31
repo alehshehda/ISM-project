@@ -1,11 +1,9 @@
 # Zarządzanie i reagowanie na incydenty bezpieczeństwa w środowisku Neobank
 
-[![Build and Release PDF](https://github.com/alehshehda/ISM-project/actions/workflows/compile.yml/badge.svg)](https://github.com/alehshehda/ISM-project/actions/workflows/compile.yml)
+[![Zobacz PDF](https://img.shields.io/badge/Zobacz_PDF-GitHub_Pages-8C0014?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://alehshehda.github.io/ISM-project/)
+[![Pobierz PDF](https://img.shields.io/badge/Pobierz_PDF-Latest_Release-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alehshehda/ISM-project/releases/download/latest/ISM-project.pdf)
 
 Dokumentacja projektowa z przedmiotu **Zarządzanie bezpieczeństwem informacji** (Politechnika Wrocławska, Wydział Informatyki i Telekomunikacji, kierunek Cyberbezpieczeństwo).
-
-- **Aktualna wersja PDF (GitHub Pages):** https://alehshehda.github.io/ISM-project/
-- **Najnowsze wydanie PDF (GitHub Releases):** https://github.com/alehshehda/ISM-project/releases/tag/latest
 
 ## Autorzy
 
