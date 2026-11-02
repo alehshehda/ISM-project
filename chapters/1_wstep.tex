@@ -1,12 +1,83 @@
 \chapter{Wstęp i charakterystyka badanej organizacji}\label{ch:wstep}
 
 \section{Wprowadzenie i uzasadnienie tematu}\label{sec:wprowadzenie}
+Dynamiczny rozwój usług finansowych świadczonych wyłącznie w kanałach cyfrowych sprawił, że neobanki stały się istotnym uczestnikiem rynku bankowości detalicznej \cite{specjalisci2025}. Ich model działania opiera się na aplikacji mobilnej, interfejsach API, infrastrukturze chmurowej oraz szerokiej współpracy z zewnętrznymi dostawcami usług (m.in. przetwarzanie płatności, weryfikacja tożsamości, usługi chmurowe). Taka architektura zapewnia elastyczność i szybkość wdrażania nowych funkcji, jednocześnie jednak poszerza powierzchnię ataku i uzależnia ciągłość działania od podmiotów trzecich.
+
+Specyfika środowiska neobanku powoduje, że incydenty bezpieczeństwa mogą mieć szczególnie dotkliwe skutki. Usługi są dostępne całodobowo, a płatności realizowane w czasie zbliżonym do rzeczywistego ograniczają okno czasowe na reakcję, w szczególności w przypadku przejęcia kont i oszustw. Instytucje te przetwarzają ponadto duże wolumeny danych osobowych i finansowych, co zwiększa ryzyko naruszeń ochrony danych \cite{pymnts2026fraud}.
+
+Jednocześnie otoczenie regulacyjne wymusza sformalizowane podejście do zarządzania incydentami. Rozporządzenie DORA \cite{dora2022} wprowadza wymogi dotyczące klasyfikacji incydentów związanych z ICT oraz trzyetapowego raportowania incydentów poważnych organowi nadzoru, natomiast RODO \cite{rodo2016} nakłada obowiązek zgłaszania naruszeń ochrony danych osobowych w ściśle określonych terminach. Napięte terminy i wielość obowiązków sprawiają, że 'ad hoc' podejście do reagowania na incydenty jest niewystarczające.
+
+Powszechnie stosowane standardy i wytyczne, takie jak NIST SP 800-61 \cite{nist800-61r2} czy ISO/IEC 27035 \cite{iso27035-2}, mają charakter ogólny i nie uwzględniają wprost specyfiki neobanków ani wymogów DORA. Dostępne opracowania omawiają te zagadnienia w sposób rozproszony, brakuje natomiast spójnego ujęcia łączącego wymogi regulacyjne, organizację procesu oraz praktyczne scenariusze postępowania. Niniejsza praca ma na celu wypełnienie tej luki poprzez opracowanie procesu zarządzania incydentami i zestawu playbooków operacyjnych dostosowanych do środowiska neobanku.
 
 \section{Problem projektowy i cel pracy}\label{sec:problem-cel}
+Neobank, jako instytucja finansowa działająca w pełni w kanałach cyfrowych, musi jednocześnie sprostać trzem grupom wymagań: wymogom regulacyjnym dotyczącym zgłaszania incydentów, specyfice własnej architektury (aplikacja mobilna, API, chmura, usługodawcy zewnętrzni) oraz dobrym praktykom zarządzania incydentami opisanym w standardach międzynarodowych. Wymogi te nakładają ściśle określone terminy działania - m.in. DORA \cite{dora2022} przewiduje zgłoszenie wstępne incydentu poważnego w ciągu 4 godzin od jego sklasyfikowania (i nie później niż w ciągu 24 godzin od stwierdzenia incydentu), raport pośredni w ciągu 72 godzin oraz raport końcowy w ciągu miesiąca, a RODO \cite{rodo2016} wymaga zgłoszenia naruszenia ochrony danych organowi nadzorczemu w ciągu 72 godzin. Standardy opisują cykl życia incydentu, nie wskazują jednak, jak powiązać go z tymi terminami ani jak dostosować go do środowiska neobanku.
+
+\textbf{Problemem projektowym} jest zatem brak spójnego, praktycznego modelu zarządzania incydentami bezpieczeństwa, który łączyłby wymogi regulacyjne, organizację procesu i konkretne scenariusze postępowania w warunkach neobanku.
+
+\textbf{Celem pracy} jest opracowanie procesu zarządzania incydentami bezpieczeństwa wraz z zestawem playbooków operacyjnych i szablonów formularzy, dostosowanych do wymogów regulacyjnych oraz specyfiki środowiska neobanku, a następnie zweryfikowanie ich na wybranym studium przypadku.
+
 
 \section{Zakres projektu i układ dokumentu}\label{sec:zakres-uklad}
+\label{sec:zakres}
 
-\section{Charakterystyka organizacji typu Neobank}\label{sec:charakterystyka-neobank}
+\subsection{Przyjęty profil organizacji}
+\label{sec:profil}
+
+Opracowane rozwiązania odnoszą się do hipotetycznej instytucji „Neobank X”. Jej profil opracowano na podstawie publicznie dostępnych informacji o charakterystyce neobanków działających na rynku EU/Polski, ponieważ szczegóły wewnętrznych procesów rzeczywistych instytucji nie są publicznie dostępne. Przyjęte założenia zestawiono w tabeli \ref{tab:profil}.
+
+\begin{table}[H]
+\centering
+\caption{Profil hipotetycznej instytucji „Neobank X”}
+\label{tab:profil}
+\begin{tabular}{@{}p{4.2cm}p{9.3cm}@{}}
+\toprule
+\textbf{Obszar} & \textbf{Założenie} \\
+\midrule
+Forma i nadzór &
+Bank krajowy podlegający nadzorowi Komisji Nadzoru Finansowego (KNF) \\
+Model działania &
+Usługi świadczone wyłącznie w kanałach cyfrowych: aplikacja mobilna i interfejsy API, bez placówek stacjonarnych \\
+Skala &
+Ok. 0.5-1 mln klientów indywidualnych \\
+Infrastruktura &
+Publiczna chmura, architektura mikroserwisowa, dostępność całodobowa \\
+Dostawcy zewnętrzni &
+Przetwarzanie płatności kartowych, weryfikacja tożsamości (KYC), usługi chmurowe, wysyłka SMS i powiadomień, integracja z systemami płatności natychmiastowych \\
+Organizacja bezpieczeństwa &
+Zespół SOC działający w trybie 24/7, CISO, inspektor ochrony danych (IOD), zespół zgodności (compliance), zespół antyfraudowy \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Zakres pracy}
+
+Praca obejmuje:
+\begin{itemize}
+    \item analizę wymogów regulacyjnych dotyczących zarządzania incydentami bezpieczeństwa i raportowania ich skutków, w szczególności wynikających z rozporządzenia DORA \cite{dora2022} oraz RODO \cite{rodo2016},
+    \item model organizacji procesu zarządzania incydentami: role i odpowiedzialności, kryteria klasyfikacji, ścieżki eskalacji oraz terminy raportowania,
+    \item playbooki operacyjne dla wybranych scenariuszy incydentów charakterystycznych dla neobanku,
+    \item studium przypadku weryfikujące zaproponowany proces,
+    \item szablony formularzy wspierające realizację procesu.
+\end{itemize}
+
+Poza zakresem pracy pozostają:
+\begin{itemize}
+    \item wdrożenie technicznych narzędzi klasy SIEM/SOAR,
+    \item szczegółowa analiza śledcza złośliwego oprogramowania,
+    \item zagadnienia ciągłości działania i odtwarzania po awarii wykraczające poza obszar reagowania na incydenty,
+    \item pełna analiza prawna wykraczająca poza wymogi dotyczące zarządzania incydentami.
+\end{itemize}
+
+\subsection{Założenia i ograniczenia}
+
+W pracy przyjęto następujące założenia i ograniczenia:
+\begin{itemize}
+    \item profil „Neobank X” jest hipotetyczny, a wnioski należy traktować jako propozycję modelu wymagającą adaptacji do konkretnej organizacji,
+    \item studium przypadku ma charakter symulowany, ponieważ dane o rzeczywistych incydentach instytucji finansowych nie są publicznie dostępne; scenariusz opracowano w oparciu o publicznie znane techniki ataków,
+    \item stan prawny przyjęto na dzień 1 listopada 2026 r.; późniejsze zmiany regulacji nie zostały uwzględnione,
+    \item organizacja dysponuje funkcjami i rolami wskazanymi w tabeli \ref{tab:profil}.
+\end{itemize}
+
 
 \subsection{Profil działalności i model operacyjny}\label{subsec:profil-dzialalnosci}
 
